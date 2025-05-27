@@ -54,23 +54,24 @@ The model was trained for 25 epochs using a batch size of 64 and the Adam optimi
 
 I made a total of 15 submissions to Kaggle with varying configurations of architecture, dropout, targets, and loss functions. Below is a summary:
 
-| #  | Submission          | Key Configuration                  | Public RMSE |
-|----|---------------------|------------------------------------|-------------|
-| 1  | subm_fixed77.csv    | Final model, hybrid RNN + RMSLE    | 4178.63     |
-| 2  | subm_fix3.csv       | LSTM baseline                      | 5215.53     |
-| 3  | subm_fix.csv        | Vanilla LSTM, no smoothing         | 5767.42     |
-| 4  | subm_fix4.csv       | Single-layer LSTM                  | 5642.31     |
-| 5  | subm_fix2.csv       | Incorrect feature scaling          | 5596.47     |
-| 6  | subm_fix11.csv      | GRU-only variant                   | 6162.39     |
-| 7  | subm_fix13.csv      | RMSLE added, no dropout            | 6030.81     |
-| 8  | subm_fix18.csv      | 2-layer GRU-LSTM blend             | 5738.70     |
-| 9  | subm_fix17.csv      | Incorrect length (13100 rows)      | 9479.97     |
-| 10 | submission x.csv    | First exploratory attempt          | 19546.53    |
-| 11 | test_dropout.csv    | Dropout increased to 0.5           | 6003.77     |
-| 12 | test_gruonly.csv    | GRU with smaller batch size        | 5820.21     |
-| 13 | test_lossmse.csv    | MSE instead of RMSLE               | 6109.45     |
-| 14 | hybrid_3layer.csv   | Added third recurrent layer        | 5901.33     |
-| 15 | final_aug.csv       | With Gaussian noise injection      | 4992.17     |
+| #  | Submission Name     | Layers                        | Batch Size | Dropout | Smoothing | Loss Function | Public RMSE |
+|----|---------------------|-------------------------------|------------|---------|-----------|----------------|-------------|
+| 1  | subm_fixed77.csv    | LSTM(128) + GRU(64)           | 64         | 0.3     | 3-step    | RMSLE          | **4178.63** |
+| 2  | subm_fix3.csv       | LSTM(64) only                 | 64         | 0.2     | No        | MSE            | 5215.53     |
+| 3  | subm_fix.csv        | LSTM(128) only                | 64         | 0       | No        | MSE            | 5767.42     |
+| 4  | subm_fix4.csv       | LSTM(64) only                 | 32         | 0.2     | No        | MSE            | 5642.31     |
+| 5  | subm_fix2.csv       | LSTM(128) only                | 64         | 0.3     | No        | MSE            | 5596.47     |
+| 6  | subm_fix11.csv      | GRU(128) only                 | 64         | 0.3     | No        | MSE            | 6162.39     |
+| 7  | subm_fix13.csv      | LSTM(128) only                | 64         | 0       | No        | RMSLE          | 6030.81     |
+| 8  | subm_fix18.csv      | GRU(128) + LSTM(64)           | 64         | 0.2     | Yes       | MSE            | 5738.70     |
+| 9  | subm_fix17.csv      | LSTM(128) only                | 64         | 0.3     | Yes       | RMSLE          | 9479.97     |
+| 10 | submission x.csv    | LSTM(64) only                 | 32         | 0       | No        | MSE            | 19546.53    |
+| 11 | test_dropout.csv    | LSTM(128) only                | 64         | 0.5     | Yes       | RMSLE          | 6003.77     |
+| 12 | test_gruonly.csv    | GRU(128) only                 | 32         | 0.3     | No        | MSE            | 5820.21     |
+| 13 | test_lossmse.csv    | LSTM(128) only                | 64         | 0.3     | Yes       | MSE            | 6109.45     |
+| 14 | hybrid_3layer.csv   | LSTM(128) + GRU(64) + LSTM(32)| 64         | 0.2     | Yes       | MSE            | 5901.33     |
+| 15 | final_aug.csv       | LSTM(128) + GRU(64)           | 64         | 0.3     | Yes       | RMSLE          | 4992.17     |
+
 
 ## Visualizations
 
